@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import Headline from "../shared/Headline";
-import skills from "../../public/skills.js";
+import skills from "../../public/skills.jsx";
 import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 
@@ -64,12 +64,13 @@ const About = () => {
           <h4 className="text-2xl font-bold mb-8">My Skills</h4>
           <div className="flex flex-wrap gap-3 md:w-10/12">
             {skills.map((skill) => (
-              <p
+              <div
                 key={skill.id}
-                className="bg-slate-300 dark:bg-gray-700 text-light dark:text-white py-2 px-4 rounded"
+                className="bg-slate-200 dark:bg-gray-700 text-black dark:text-white py-3 px-3 rounded flex items-center gap-2 hover:scale-105 hover:-translate-y-[2px] hover:dark:bg-gray-600 hover:bg-slate-300"
               >
-                {skill.title}
-              </p>
+                {<img src={skill.logo} alt={skill.title} className="w-7 h-7" />}
+                <span>{skill.title}</span>
+              </div>
             ))}
           </div>
         </motion.div>

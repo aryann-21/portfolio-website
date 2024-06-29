@@ -1,4 +1,9 @@
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import {
+  Bars3Icon,
+  XMarkIcon,
+  SunIcon,
+  MoonIcon,
+} from "@heroicons/react/24/solid"; // Import SunIcon and MoonIcon
 import { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import profileImg from "../assets/pfp.jpg";
@@ -16,8 +21,11 @@ const Header = () => {
   useEffect(() => {
     const savedMode = localStorage.getItem("darkMode");
     if (savedMode) {
-      setDarkMode(JSON.parse(savedMode));
-      document.documentElement.classList.add("dark");
+      const isDarkMode = JSON.parse(savedMode);
+      setDarkMode(isDarkMode);
+      if (isDarkMode) {
+        document.documentElement.classList.add("dark");
+      }
     }
   }, []);
 
@@ -77,9 +85,13 @@ const Header = () => {
           ))}
           <button
             onClick={toggleDarkMode}
-            className="ml-10 border-2 border-black dark:border-white shadow-md py-2 px-3 rounded-md font-semibold dark:text-white"
+            className="ml-10 border-2 border-black dark:border-white shadow-md py-2 px-2 rounded-[25px] font-semibold dark:text-white flex items-center justify-center"
           >
-            {darkMode ? "Light Mode" : "Dark Mode"}
+            {darkMode ? (
+              <SunIcon className="w-6 h-6 text-yellow-400" />
+            ) : (
+              <MoonIcon className="w-6 h-6 text-gray-600" />
+            )}
           </button>
         </ul>
       </div>
